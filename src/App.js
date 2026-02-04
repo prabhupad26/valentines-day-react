@@ -75,6 +75,7 @@ export default function App() {
 
     const data = await response.json();
     console.log(data.success);
+    alert("Looking forward to make you feel special!! 💖");
     setShowModal(false);
   };
 
