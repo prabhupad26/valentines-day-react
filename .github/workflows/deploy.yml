@@ -27,7 +27,7 @@ jobs:
         # Skip if you only have static HTML/CSS/JS
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v7
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./  # Change to ./build or ./public if needed
