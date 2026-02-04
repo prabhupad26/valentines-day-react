@@ -1,104 +1,179 @@
-import React, { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useEffect, useState } from "react";
+import "./App.css";
 
-import './App.css';
+export default function App() {
+  const [showUrbanInput, setShowUrbanInput] = useState(false);
+  const [showAmazonInput, setAmazonInput] = useState(false);
+  const [noPos, setNoPos] = useState({ x: 60, y: 60 });
+  const [showModal, setShowModal] = useState(false);
+  const [hearts, setHearts] = useState([]);
 
+  /* 💖 Floating hearts animation */
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHearts((prev) => [
+        ...prev.slice(-120),
+        {
+          id: Date.now(),
+          left: Math.random() * 100,
+          duration: Math.random() * 3 + 3,
+        },
+      ]);
+    }, 800);
 
+    return () => clearInterval(interval);
+  }, []);
 
-function App() {
+  /* 🏃 Escape button logic */
+    const moveNoButton = (e) => {
 
-  const [x, setx] = useState(52);
-  const [y, sety] = useState(55);
-  const form = useRef();
+      const padding = 2; // keep inside screen
+      const maxX = 100 - padding;
+      const maxY = 100 - padding;
 
+      // Base random position
+      let newX = Math.random() * maxX;
+      let newY = Math.random() * maxY;
 
-  const body = document.querySelector("body");
-  if (!body) {
-    throw new ReferenceError("Body section not found.");
-  }
+      // If we know cursor/touch position → jump AWAY from it
+      if (e?.clientX && e?.clientY) {
+        console.log(e.clientX, e.clientY);
+        const screenX = (e.clientX / window.innerWidth) * 100;
+        const screenY = (e.clientY / window.innerHeight) * 100;
 
-  function createHeart() {
-    const heart = document.createElement("i");
-    heart.className = "fa-solid fa-heart";
-    heart.style.left = (Math.random() * 100) + "vw";
-    heart.style.animationDuration = (Math.random() * 3) + 2 + "s"
-    body.appendChild(heart);
-  }
-  setInterval(createHeart, 1000);
-  setInterval(function name(params) {
-    var heartArr = document.querySelectorAll(".fa-heart")
-    if (heartArr.length > 200) {
-      heartArr[0].remove()
-    }
+        const dx = newX - screenX;
+        const dy = newY - screenY;
 
-  }, 100);
+        // Push it farther in the opposite direction
+        newX += dx * 2;
+        newY += dy * 2;
+      }
 
-
-  /* code for moving button */
-  const popUp = () => {
-    alert("AH look at you, you caught the button. \nLucky button catchers win one free date on February 14th with an eligible bachelor who will be in touch with you to follow up!");
-  }
-
-  const clickedYes = () => {
-    alert("Its either you couldn't catch the no button or you really wanted to be my valentines date. Either way an email has been sent to me notifying me what you choose")
-  }
-
-  function mouseOver() {
-    setx(Math.random() * 100);
-    sety(Math.random() * 100);
-  }
-  
-  var noStyle = {
-    left: x + "%",
-    top: y + "%",
-    position: "absolute",
-  };
-  
-  var yesStyle = {
-    left: "40%",
-    top: "55%",
-    position: "absolute",
-  }
-
-  /* code for email alert sent when she says yes */
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs.sendForm('service_z199l6g', 'template_w4y121f', form.current, 'KI7bceeNiZsp0c9Kp')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-      e.target.reset();
+      
+      console.log("Moving NO button to:", newX, newY);
+      setNoPos({ x: newX, y: newY });
   };
 
+  /* 😈 NO button click */
+  const noClicked = () => {
+    alert(
+      "AH! You caught the button 😅\n\nLucky you, you have won one free date on Feb 14th with a special someone 💘"
+    );
+  };
 
+  /* 💌 YES submit */
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    formData.append("access_key", "cc1be779-4934-457d-8151-1bef847f9f45");
+    console.log(formData);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+    console.log(data.success);
+    setShowModal(false);
+  };
 
   return (
-    <>
-    <p className="pre-valentine">
-      Will you be my
-    </p>
-    <p className="valentine">Valentine</p>
-    <form onSubmit={sendEmail} ref={form}>
-      <button 
-        style={yesStyle}
-        type="submit"
-        onClick={clickedYes}
-      >
-        YES!
-      </button> 
-    </form>
-    <button
-      onMouseOver={mouseOver}
-      style={noStyle}
-      onClick={popUp}
-    >
-      no
-  </button>
-  </>
+    <div className="app">
+      {/* Floating hearts */}
+      {hearts.map((h) => (
+        <i
+          key={h.id}
+          className="fa-solid fa-heart heart"
+          style={{
+            left: `${h.left}vw`,
+            animationDuration: `${h.duration}s`,
+          }}
+        />
+      ))}
+
+      <div className="card">
+        <p className="pre-text">Dear Nupur, Will you be my</p>
+        <h1 className="title">Valentine 💖</h1>
+
+        <form onSubmit={onSubmit} className="button-area">
+          <button type="button" className="btn yes" onClick={() => setShowModal(true)}>
+            YES!
+          </button>
+
+          <button
+            type="button"
+            className="btn no"
+            style={{
+              left: `${noPos.x}%`,
+              top: `${noPos.y}%`,
+            }}
+            onMouseEnter={moveNoButton}
+            onTouchStart={moveNoButton}
+            onClick={noClicked}
+          >
+            NO!
+          </button>
+          {/* 💝 Modal */}
+          {showModal && (
+            <div className="modal-backdrop" onClick={() => setShowModal(false)}>
+              <div className="modal" onClick={(e) => e.stopPropagation()}>
+                <button className="close" onClick={() => setShowModal(false)}>
+                  ×
+                </button>
+
+                <h3>💖 Valentine’s Day Plan?</h3>
+
+                <label>
+                  <input type="checkbox" name="options" value="Biryani" />
+                  Mast wala Biryani 🍽️
+                </label>
+
+                <label className="radio-option">
+                  <input
+                    type="checkbox"
+                    name="options"
+                    value="UrbanClap"
+                    onChange={(e) => setShowUrbanInput(e.target.checked)}
+                  />
+                  Pick Anything from UrbanClap and I will book it (Any Kind of Pampering you would like ?)
+
+                  <input
+                    type="text"
+                    name="UrbanClapDetails"
+                    placeholder="What should I book? 😏"
+                    disabled={!showUrbanInput}
+                    className="inline-input"
+                  />
+                </label>
+
+                <label className="radio-option">
+                  <input
+                    type="checkbox"
+                    name="options"
+                    value="Amazon_WishList"
+                    onChange={(e) => setAmazonInput(e.target.checked)}
+                  />
+                  Anything from your Amazon Wish List, like the full length mirror for you room ? 
+
+                  <input
+                    type="text"
+                    name="Amazon_WishListDetails"
+                    placeholder="What should I buy? 😏"
+                    disabled={!showAmazonInput}
+                    className="inline-input"
+                  />
+                </label>
+
+                <button type="submit" className="btn submit">
+                  Submit 💌
+                </button>
+              </div>
+            </div>
+          )}
+
+        </form>
+      </div>
+    </div>
   );
 }
-
-export default App;
