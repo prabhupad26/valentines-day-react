@@ -1,0 +1,50 @@
+.rose-day {
+  text-align: center;
+  padding: 16px;
+}
+
+.rose-text {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #7a1336;
+}
+
+.garden {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 16px 0;
+  min-height: 80px;
+}
+
+.rose {
+  font-size: 28px;
+  animation: bloom 0.5s ease-out forwards;
+}
+
+@keyframes bloom {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.rose-btn {
+  background: linear-gradient(135deg, #e11d48, #fb7185);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.final-message {
+  margin-top: 12px;
+  font-weight: 500;
+  color: #9f1239;
+}
