@@ -8,6 +8,7 @@ import ValentineForm from "./components/ValentineForm";
 import RoseDay from "./components/day_events/RoseDay";
 import EventSelector from "./components/EventSelector";
 import ProposeDay from "./components/day_events/ProposeDay";
+import PaniPuriDay from "./components/day_events/PaniPuriDay";
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
@@ -30,6 +31,7 @@ export default function App() {
         onChange={setSelectedEvent}/>
         {selectedEvent === "rose" && <RoseDay />}
         {selectedEvent === "propose" && <ProposeDay />}
+        {selectedEvent === "pani-puri" && <PaniPuriDay />}
         {selectedEvent === "default" && (
           <div>
         <p className="pre-text">Dear Nupur, Will you be my</p>
