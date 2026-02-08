@@ -13,7 +13,7 @@ export default function RoseDay() {
             <h2>For you 🌹</h2>
 
             <p className="rose-text">
-                Roses are red violets are blue, click the button to grow a rose for you 🌹
+                Roses are red violets are blue, keep on clicking the button to grow a rose for you 🌹
             </p>
 
             <div className="garden">

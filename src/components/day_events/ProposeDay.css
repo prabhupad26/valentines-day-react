@@ -1,0 +1,47 @@
+.propose-day {
+  text-align: center;
+  padding: 18px;
+}
+
+.propose-text {
+  font-size: 14px;
+  margin: 12px 0 20px;
+  color: #6b0216;
+  line-height: 1.6;
+}
+
+.propose-btn {
+  background: linear-gradient(135deg, #be123c, #fb7185);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.proposal {
+  margin-top: 16px;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.question {
+  font-size: 28px;
+  color: #9f1239;
+}
+
+.sub-text {
+  font-size: 14px;
+  margin-top: 8px;
+  color: #7a1336;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -7,10 +7,11 @@ import Modal from "./components/Modal";
 import ValentineForm from "./components/ValentineForm";
 import RoseDay from "./components/day_events/RoseDay";
 import EventSelector from "./components/EventSelector";
+import ProposeDay from "./components/day_events/ProposeDay";
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState("rose");
+  const [selectedEvent, setSelectedEvent] = useState("propose");
 
 
   const noClicked = () => {
@@ -28,6 +29,7 @@ export default function App() {
         value={selectedEvent}
         onChange={setSelectedEvent}/>
         {selectedEvent === "rose" && <RoseDay />}
+        {selectedEvent === "propose" && <ProposeDay />}
         {selectedEvent === "default" && (
           <div>
         <p className="pre-text">Dear Nupur, Will you be my</p>
