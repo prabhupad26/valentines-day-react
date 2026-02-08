@@ -42,6 +42,7 @@ export default function ProposeDay() {
           <h1 className="question">Will you be mine? 💍</h1>
           <p className="sub-text">
             Not just today, but in all the little tomorrows we haven’t lived yet.
+            Don't worry, I will wait until you are ready.
           </p>
         </div>
       )}
