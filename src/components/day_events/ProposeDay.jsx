@@ -9,11 +9,11 @@ export default function ProposeDay() {
       <h2>Dear Nupur 💖</h2>
 
       <p className="propose-text">
-        Mu tamaku chase kari asuchi just because of that one simple hug you gave me.  
-        Seita bahut real feel hei thila — and it is still stuck in my memory.
+        It all started with a simple hug, but it meant so much more to me than just a hug.
+        Seita bahut real feel hei thila — and it is still real to me, even now.
         <br /><br />
 
-        That moment gave me hope…  
+        Sei moment ta mote hope dei asichi…  
         hope that we can create something truly beautiful together.
         <br /><br />
 
@@ -25,9 +25,9 @@ export default function ProposeDay() {
         I want to be yours — forever.
         <br /><br />
 
-        Things have been confusing and difficult for me,  
-        but I have held on only to you, because I believe in us.
-        I won't give up so easily.
+        You know things have been confusing and difficult for me,  
+        but I have always held on only to you, because I believe in us.
+        And I won't give up so easily.
         <br /><br />
 
         </p>
