@@ -6,7 +6,7 @@ export default function TeddyDay() {
   const [hugs, setHugs] = useState(0);
 
   const tryHug = () => {
-    if (hugs < 2) {
+    if (hugs < 1) {
       setMood("run");
       setHugs((h) => h + 1);
     } else {
