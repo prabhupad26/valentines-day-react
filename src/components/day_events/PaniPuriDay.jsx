@@ -40,7 +40,7 @@ export default function PaniPuriDay() {
           <div className="panipuri-plate">
             {Array.from({ length: panipuriCount }).map((_, i) => (
               <span key={i} className="panipuri">
-                🥟
+                🌕🧉🥙
               </span>
             ))}
           </div>
