@@ -10,6 +10,7 @@ export default function EventSelector({ value, onChange }) {
       <option value="propose">Propose Day</option>
       <option value="pani-puri">Chocolate Day</option>
       <option value="teddy-day">Teddy Day</option>
+      <option value="promise-day">Promise Day</option>
     </select>
   );
 }
