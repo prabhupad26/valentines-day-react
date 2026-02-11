@@ -11,10 +11,11 @@ import ProposeDay from "./components/day_events/ProposeDay";
 import PaniPuriDay from "./components/day_events/PaniPuriDay";
 import TeddyDay from "./components/day_events/TeddyDay";
 import PromiseDay from "./components/day_events/PromiseDay";
+import HugDay from "./components/day_events/HugDay";
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState("promise-day");
+  const [selectedEvent, setSelectedEvent] = useState("hug-day");
 
 
   const noClicked = () => {
@@ -36,6 +37,7 @@ export default function App() {
         {selectedEvent === "pani-puri" && <PaniPuriDay />}
         {selectedEvent === "teddy-day" && <TeddyDay />}
         {selectedEvent === "promise-day" && <PromiseDay />}
+        {selectedEvent === "hug-day" && <HugDay />}
         {selectedEvent === "default" && (
           <div>
         <p className="pre-text">Dear Nupur, Will you be my</p>

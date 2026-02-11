@@ -1,0 +1,88 @@
+.hug-wrapper {
+  text-align: center;
+  padding: 40px;
+  transition: background 1s ease;
+}
+
+.hug-wrapper.active {
+  background: linear-gradient(135deg, #ffe6f0, #fff5fa);
+}
+
+.hug-start-btn {
+  padding: 14px 30px;
+  border-radius: 30px;
+  border: none;
+  font-size: 18px;
+  background: #ff4d88;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hug-start-btn:hover {
+  transform: scale(1.08);
+}
+
+.hug-heading {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.hug-list {
+  list-style: none;
+  padding: 0;
+}
+
+.hug-item {
+  margin: 15px 0;
+  padding: 12px 18px;
+  border-radius: 20px;
+  background: white;
+  display: inline-block;
+  box-shadow: 0 8px 20px rgba(255, 105, 135, 0.2);
+  animation: fadeSlide 1s ease forwards;
+}
+
+.hug-bullet {
+  margin-right: 8px;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.final-hug {
+  margin-top: 40px;
+  position: relative;
+}
+
+.pulse-circle {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: #ff99bb;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}

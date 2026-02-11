@@ -11,6 +11,7 @@ export default function EventSelector({ value, onChange }) {
       <option value="pani-puri">Chocolate Day</option>
       <option value="teddy-day">Teddy Day</option>
       <option value="promise-day">Promise Day</option>
+      <option value="hug-day">Hug Day</option>
     </select>
   );
 }
