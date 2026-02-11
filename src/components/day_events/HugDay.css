@@ -1,88 +1,108 @@
 .hug-wrapper {
   text-align: center;
-  padding: 40px;
-  transition: background 1s ease;
-}
-
-.hug-wrapper.active {
-  background: linear-gradient(135deg, #ffe6f0, #fff5fa);
+  padding: 20px;
+  max-height: 420px;           /* Same controlled height */
+  overflow-y: auto;            /* Scroll enabled */
+  scrollbar-width: thin;
 }
 
 .hug-start-btn {
-  padding: 14px 30px;
-  border-radius: 30px;
+  background: #ff758f;
+  color: #fff;
   border: none;
-  font-size: 18px;
-  background: #ff4d88;
-  color: white;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s ease;
 }
 
 .hug-start-btn:hover {
-  transform: scale(1.08);
+  background: #d6336c;
 }
 
+/* Scrollbar Styling */
+.hug-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.hug-wrapper::-webkit-scrollbar-thumb {
+  background: #ff758f;
+  border-radius: 10px;
+}
+
+.hug-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Title */
 .hug-heading {
-  margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 2.2rem;
+  color: #c9184a;
+  margin-bottom: 10px;
 }
 
+/* Sub text */
+.hug-sub {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Hug List Layout */
 .hug-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  max-width: 420px;
+  margin: auto;
   list-style: none;
   padding: 0;
 }
 
+/* Hug Card Style */
 .hug-item {
-  margin: 15px 0;
-  padding: 12px 18px;
-  border-radius: 20px;
-  background: white;
-  display: inline-block;
-  box-shadow: 0 8px 20px rgba(255, 105, 135, 0.2);
-  animation: fadeSlide 1s ease forwards;
+  padding: 14px;
+  border-radius: 14px;
+  border: 2px dashed #ff8fab;
+  background: #fff;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.6s ease forwards;
 }
 
-.hug-bullet {
-  margin-right: 8px;
+/* Hover effect */
+.hug-item:hover {
+  background: #fff0f3;
 }
 
-@keyframes fadeSlide {
+/* Final Hug Section */
+.hug-final {
+  margin-top: 25px;
+  padding: 20px;
+  background: #fff0f6;
+  border-radius: 16px;
+  animation: fadeIn 0.8s ease;
+}
+
+.hug-final h2 {
+  color: #d6336c;
+}
+
+.hug-final p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-.final-hug {
-  margin-top: 40px;
-  position: relative;
-}
-
-.pulse-circle {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 15px;
-  border-radius: 50%;
-  background: #ff99bb;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  70% {
-    transform: scale(1.4);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
   }
 }

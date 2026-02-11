@@ -3,43 +3,59 @@ import "./HugDay.css";
 
 const hugPoints = [
   "Mu tamaku hug karibi jebe tume dukhi thiba ❤️",
-  "Mu tamaku hug karibi jebe tume kamo re stressed re thiba 💼",
+  "Mu tamaku hug karibi jebe tume kaam re bahut stressed re thiba 💼",
   "Mu tamaku pichu ru hug karibi jebe tume ama pain cooking karuthiba 🍳",
   "Mu tamaku tight hug debi jebe tume overthink karuthiba 🫂",
-  "Kebe bhi dura ku gala to gote ekdum tight wala hug kariki patheibi 🫂",
-  "Distance thau… mora hug ta sabu bele tamapain available 💫"
+  "Jebe tume dura ku jiba, mu ekdum tight wala hug patheibi 🫶",
+  "Distance thau… mora hug sabubele tamapain available 💫"
 ];
 
 export default function HugDay() {
   const [started, setStarted] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(0);
+  const [visibleIndex, setVisibleIndex] = useState(-1);
 
   useEffect(() => {
     if (!started) return;
 
-    if (visibleCount < hugPoints.length) {
+    if (visibleIndex < hugPoints.length - 1) {
       const timer = setTimeout(() => {
-        setVisibleCount((prev) => prev + 1);
-      }, 1500);
+        setVisibleIndex((prev) => prev + 1);
+      }, 1400);
 
       return () => clearTimeout(timer);
     }
-  }, [started, visibleCount]);
+  }, [started, visibleIndex]);
+
+  const allVisible = visibleIndex === hugPoints.length - 1;
 
   return (
-    <div className={`hug-wrapper ${started ? "active" : ""}`}>
+    <div className="hug-wrapper">
       {!started ? (
-        <button className="hug-start-btn" onClick={() => setStarted(true)}>
-          Receive Your Hug 🤗
-        </button>
-      ) : (
-        <div className="hug-list-container">
-          <h2 className="hug-heading">
+        <div className="hug-intro">
+          <h1 className="hug-heading">Happy Hug Day ❤️</h1>
+          <p className="hug-sub">
+            Tume jana ei dina ta kete special…  
             Aji Hug Day… au tume mo pakhare nahao 🥺
+          </p>
+
+          <button
+            className="hug-start-btn"
+            onClick={() => {
+              setStarted(true);
+              setVisibleIndex(0);
+            }}
+          >
+            Quick! Let me hug you virtually 🤗
+          </button>
+        </div>
+      ) : (
+        <>
+          <h2 className="hug-heading">
+            Mora Hug Intentions List ❤️
           </h2>
 
           <ul className="hug-list">
-            {hugPoints.slice(0, visibleCount).map((point, index) => (
+            {hugPoints.slice(0, visibleIndex + 1).map((point, index) => (
               <li key={index} className="hug-item">
                 <span className="hug-bullet">❤️</span>
                 {point}
@@ -47,13 +63,17 @@ export default function HugDay() {
             ))}
           </ul>
 
-          {visibleCount === hugPoints.length && (
-            <div className="final-hug">
-              <div className="pulse-circle"></div>
-              <p>Close your eyes… feel me hugging you tightly 🫂</p>
+          {allVisible && (
+            <div className="hug-final">
+              <h2>Close your eyes…</h2>
+              <p>
+                Imagine mu tamaku dhire dhire hug karuchi…  
+                tight… warm… safe 🫂❤️  
+                Happy Hug Day.
+              </p>
             </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );
